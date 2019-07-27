@@ -1,26 +1,55 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+export default class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      text: 'Press the button'
+    }
+    this.chiamaStocazzo = this.chiamaStocazzo.bind(this);
+  }
+
+  chiamaStocazzo(){
+    axios({
+      method: 'GET',
+      url: '/stocazzo'
+    })
+    .then(response=>{
+      console.logg(response);
+    })
+    .catch(error=>{
+      console.log(error);
+    });
+    
+
+    this.setState({
+      text: 'Stocazzo ricevuto',
+    }, () => {
+      this.clearTextDelay(1000)
+    });
+  }
+
+  clearTextDelay(milliseconds){
+    return setTimeout(()=>{
+      this.setState({
+        text: ".. e ora e' sparito"
+      })
+    }, 2000 );
+  }
+
+  render(){
+    return (
+      <div>
+        <button
+          onClick={this.chiamaStocazzo}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Chiama stocazzo
+        </button>
+        <p>
+          {this.state.text} {this.state.counter}
+        </p>
+      </div>
+    )
+  }
 }
-
-export default App;
