@@ -14,7 +14,7 @@ export default class App extends React.Component {
   chiamaStocazzo(){
     axios({
       method: 'GET',
-      url: 'localhost:3001/stocazzo'
+      url: 'http://localhost:3001/stocazzo'
     })
     .then(response=>{
       console.log(response);
