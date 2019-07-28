@@ -14,18 +14,19 @@ export default class App extends React.Component {
   chiamaStocazzo(){
     axios({
       method: 'GET',
-      url: 'api.wederoo.com/stocazzo'
+      url: 'localhost:3001/stocazzo'
     })
     .then(response=>{
-      let text =  response.body.text;
-      this.setState({
-        text: text,
-      }, () => {
-        this.clearTextDelay(1000)
-      });
+      console.log(response);
     })
     .catch(error=>{
       console.log(error);
+    });
+
+    this.setState({
+      text: "Sto cazzo fake ricevuto",
+    }, () => {
+      this.clearTextDelay(1000);
     });
   }
 
