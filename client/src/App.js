@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 export default class App extends React.Component {
+
   constructor(){
     super();
     this.state = {
@@ -13,20 +14,19 @@ export default class App extends React.Component {
   chiamaStocazzo(){
     axios({
       method: 'GET',
-      url: '/stocazzo'
+      url: 'localhost:3001/stocazzo'
     })
     .then(response=>{
-      console.logg(response);
+      console.log(response);
     })
     .catch(error=>{
       console.log(error);
     });
-    
 
     this.setState({
-      text: 'Stocazzo ricevuto',
+      text: "Sto cazzo fake ricevuto",
     }, () => {
-      this.clearTextDelay(1000)
+      this.clearTextDelay(1000);
     });
   }
 
